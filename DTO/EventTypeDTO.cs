@@ -8,5 +8,8 @@ namespace DTO
 {
     class EventTypeDTO
     {
+        public int EventTypeCode { get; set; }
+        public string EventTypeName { get; set; }
+
     }
 }

@@ -27,8 +27,8 @@ namespace DAL
         public int UserCode { get; set; }
         public int EventStatus { get; set; }
     
-        public virtual User User { get; set; }
         public virtual EventType EventType { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
     }

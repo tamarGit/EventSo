@@ -25,10 +25,9 @@ namespace DAL
         public int EventCode { get; set; }
         public int EventTypeCode { get; set; }
         public System.DateTime DeadLine { get; set; }
-        public string Duration { get; set; }
         public int ProfessionalCode { get; set; }
         public int TaskStatus { get; set; }
-        public byte[] BeginingTime { get; set; }
+        public System.DateTime BeginingTime { get; set; }
     
         public virtual Event Event { get; set; }
         public virtual Professional Professional { get; set; }
