@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Convert\Convert.cs" />
+    <Compile Include="EventBl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
