@@ -1,0 +1,2 @@
+C:\Users\USER\Desktop\EventSo\Server\BL\obj\Debug\BL.csprojAssemblyReference.cache
+C:\Users\USER\Desktop\EventSo\Server\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache

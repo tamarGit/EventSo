@@ -80,3 +80,7 @@ C:\Users\User\Desktop\EventSo\EventSo\API\obj\Debug\API.csproj.CoreCompileInputs
 C:\Users\User\Desktop\EventSo\EventSo\API\obj\Debug\API.csproj.CopyComplete
 C:\Users\User\Desktop\EventSo\EventSo\API\obj\Debug\API.dll
 C:\Users\User\Desktop\EventSo\EventSo\API\obj\Debug\API.pdb
+C:\Users\USER\Desktop\EventSo\Server\API\obj\Debug\API.csprojAssemblyReference.cache
+C:\Users\USER\Desktop\EventSo\Server\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\EventSo\Server\API\obj\Debug\API.dll
+C:\Users\USER\Desktop\EventSo\Server\API\obj\Debug\API.pdb

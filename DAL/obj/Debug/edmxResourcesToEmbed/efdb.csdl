@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventSoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventCode" />
+    </Key>
+    <Property Name="EventCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventTypeCode" Type="Int32" Nullable="false" />
+    <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserCode" Type="Int32" Nullable="false" />
+    <Property Name="EventStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EventType" Relationship="Self.fk_EventType" FromRole="Event" ToRole="EventType" />
+    <NavigationProperty Name="User" Relationship="Self.fk_EventUser" FromRole="Event" ToRole="Users" />
+    <NavigationProperty Name="Tasks" Relationship="Self.fk_TaskEvent" FromRole="Event" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="EventType">
+    <Key>
+      <PropertyRef Name="EventTypeCode" />
+    </Key>
+    <Property Name="EventTypeCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Self.fk_EventType" FromRole="EventType" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="Professional">
+    <Key>
+      <PropertyRef Name="ProfessionalCode" />
+    </Key>
+    <Property Name="ProfessionalCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProfessionalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProfessionalTypeCode" Type="Int32" Nullable="false" />
+    <Property Name="ProfessionalPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SeveralTimesInvited" Type="Int32" Nullable="false" />
+    <Property Name="LivingArea" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TotalRatings" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ProfessionalType" Relationship="Self.fk_Professional" FromRole="Professional" ToRole="ProfessionalType" />
+    <NavigationProperty Name="Tasks" Relationship="Self.fk_Task" FromRole="Professional" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="ProfessionalType">
+    <Key>
+      <PropertyRef Name="ProfessionalTypeCode" />
+    </Key>
+    <Property Name="ProfessionalTypeCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProfessionalTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Professionals" Relationship="Self.fk_Professional" FromRole="ProfessionalType" ToRole="Professional" />
+  </EntityType>
+  <EntityType Name="SubTask">
+    <Key>
+      <PropertyRef Name="SubTaskCode" />
+    </Key>
+    <Property Name="SubTaskCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubTaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TaskCode" Type="Int32" Nullable="false" />
+    <Property Name="SubTaskDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BeginingTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="duration" Type="Double" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="details" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Self.fk_SubTask" FromRole="SubTask" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskCode" />
+    </Key>
+    <Property Name="TaskCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventCode" Type="Int32" Nullable="false" />
+    <Property Name="EventTypeCode" Type="Int32" Nullable="false" />
+    <Property Name="DeadLine" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProfessionalCode" Type="Int32" Nullable="false" />
+    <Property Name="TaskStatus" Type="Int32" Nullable="false" />
+    <Property Name="BeginingTime" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Event" Relationship="Self.fk_TaskEvent" FromRole="Task" ToRole="Event" />
+    <NavigationProperty Name="Professional" Relationship="Self.fk_Task" FromRole="Task" ToRole="Professional" />
+    <NavigationProperty Name="SubTasks" Relationship="Self.fk_SubTask" FromRole="Task" ToRole="SubTask" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserCode" />
+    </Key>
+    <Property Name="UserCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Clue" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Self.fk_EventUser" FromRole="Users" ToRole="Event" />
+  </EntityType>
+  <Association Name="fk_EventType">
+    <End Role="EventType" Type="Self.EventType" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventType">
+        <PropertyRef Name="EventTypeCode" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="EventTypeCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UserCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TaskEvent">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventCode" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="EventCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Professional">
+    <End Role="ProfessionalType" Type="Self.ProfessionalType" Multiplicity="1" />
+    <End Role="Professional" Type="Self.Professional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfessionalType">
+        <PropertyRef Name="ProfessionalTypeCode" />
+      </Principal>
+      <Dependent Role="Professional">
+        <PropertyRef Name="ProfessionalTypeCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Task">
+    <End Role="Professional" Type="Self.Professional" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professional">
+        <PropertyRef Name="ProfessionalCode" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="ProfessionalCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SubTask">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="SubTask" Type="Self.SubTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskCode" />
+      </Principal>
+      <Dependent Role="SubTask">
+        <PropertyRef Name="TaskCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EventSoDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="EventTypes" EntityType="Self.EventType" />
+    <EntitySet Name="Professionals" EntityType="Self.Professional" />
+    <EntitySet Name="ProfessionalTypes" EntityType="Self.ProfessionalType" />
+    <EntitySet Name="SubTasks" EntityType="Self.SubTask" />
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="fk_EventType" Association="Self.fk_EventType">
+      <End Role="EventType" EntitySet="EventTypes" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventUser" Association="Self.fk_EventUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TaskEvent" Association="Self.fk_TaskEvent">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Professional" Association="Self.fk_Professional">
+      <End Role="ProfessionalType" EntitySet="ProfessionalTypes" />
+      <End Role="Professional" EntitySet="Professionals" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Task" Association="Self.fk_Task">
+      <End Role="Professional" EntitySet="Professionals" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SubTask" Association="Self.fk_SubTask">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="SubTask" EntitySet="SubTasks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

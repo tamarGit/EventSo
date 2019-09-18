@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class ProfessionalDTO
+    public class ProfessionalDTO
     {
         public int ProfessionalCode { get; set; }
         public string ProfessionalName { get; set; }
         public int ProfessionalTypeCode { get; set; }
+        public string ProfessionalTypeName { get; set; }
         public string ProfessionalPhone { get; set; }
         public int SeveralTimesInvited { get; set; }
         public string LivingArea { get; set; }

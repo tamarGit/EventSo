@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventSoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventCode" />
+    </Key>
+    <Property Name="EventCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EventTypeCode" Type="int" Nullable="false" />
+    <Property Name="EventDate" Type="date" Nullable="false" />
+    <Property Name="UserCode" Type="int" Nullable="false" />
+    <Property Name="EventStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventType">
+    <Key>
+      <PropertyRef Name="EventTypeCode" />
+    </Key>
+    <Property Name="EventTypeCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Professional">
+    <Key>
+      <PropertyRef Name="ProfessionalCode" />
+    </Key>
+    <Property Name="ProfessionalCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProfessionalName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProfessionalTypeCode" Type="int" Nullable="false" />
+    <Property Name="ProfessionalPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SeveralTimesInvited" Type="int" Nullable="false" />
+    <Property Name="LivingArea" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TotalRatings" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfessionalType">
+    <Key>
+      <PropertyRef Name="ProfessionalTypeCode" />
+    </Key>
+    <Property Name="ProfessionalTypeCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProfessionalTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubTask">
+    <Key>
+      <PropertyRef Name="SubTaskCode" />
+    </Key>
+    <Property Name="SubTaskCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubTaskName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TaskCode" Type="int" Nullable="false" />
+    <Property Name="SubTaskDate" Type="date" Nullable="false" />
+    <Property Name="BeginingTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="duration" Type="float" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="details" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskCode" />
+    </Key>
+    <Property Name="TaskCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EventCode" Type="int" Nullable="false" />
+    <Property Name="EventTypeCode" Type="int" Nullable="false" />
+    <Property Name="DeadLine" Type="date" Nullable="false" />
+    <Property Name="ProfessionalCode" Type="int" Nullable="false" />
+    <Property Name="TaskStatus" Type="int" Nullable="false" />
+    <Property Name="BeginingTime" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserCode" />
+    </Key>
+    <Property Name="UserCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="10" />
+    <Property Name="Clue" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_EventType">
+    <End Role="EventType" Type="Self.EventType" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventType">
+        <PropertyRef Name="EventTypeCode" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="EventTypeCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventUser">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserCode" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UserCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Professional">
+    <End Role="ProfessionalType" Type="Self.ProfessionalType" Multiplicity="1" />
+    <End Role="Professional" Type="Self.Professional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfessionalType">
+        <PropertyRef Name="ProfessionalTypeCode" />
+      </Principal>
+      <Dependent Role="Professional">
+        <PropertyRef Name="ProfessionalTypeCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SubTask">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="SubTask" Type="Self.SubTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskCode" />
+      </Principal>
+      <Dependent Role="SubTask">
+        <PropertyRef Name="TaskCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Task">
+    <End Role="Professional" Type="Self.Professional" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professional">
+        <PropertyRef Name="ProfessionalCode" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="ProfessionalCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TaskEvent">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventCode" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="EventCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EventSoDBModelStoreContainer">
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Professional" EntityType="Self.Professional" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProfessionalType" EntityType="Self.ProfessionalType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubTask" EntityType="Self.SubTask" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_EventType" Association="Self.fk_EventType">
+      <End Role="EventType" EntitySet="EventType" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventUser" Association="Self.fk_EventUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Professional" Association="Self.fk_Professional">
+      <End Role="ProfessionalType" EntitySet="ProfessionalType" />
+      <End Role="Professional" EntitySet="Professional" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SubTask" Association="Self.fk_SubTask">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="SubTask" EntitySet="SubTask" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Task" Association="Self.fk_Task">
+      <End Role="Professional" EntitySet="Professional" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TaskEvent" Association="Self.fk_TaskEvent">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

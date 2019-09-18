@@ -19,7 +19,8 @@ namespace BL.Convert
                 LivingArea = professionalDTO1.LivingArea,
                 SeveralTimesInvited = professionalDTO1.SeveralTimesInvited,
                 TotalRatings = professionalDTO1.TotalRatings,
-                ProfessionalTypeCode = professionalTypeBL.GetCodeByName(professionalDTO1.ProfessionalTypeName)
+                ProfessionalTypeCode = professionalDTO1.ProfessionalTypeCode,
+                
             };
         }
 
@@ -33,6 +34,7 @@ namespace BL.Convert
                 LivingArea = professional.LivingArea,
                 SeveralTimesInvited = professional.SeveralTimesInvited,
                 TotalRatings = professional.TotalRatings,
+                ProfessionalTypeCode = professional.ProfessionalTypeCode,
                 ProfessionalTypeName = professionalTypeBL.GetNameByCode(professionalDTO1.ProfessionalTypeName)
             };
         }

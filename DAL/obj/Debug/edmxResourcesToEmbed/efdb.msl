@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventSoDBModelStoreContainer" CdmEntityContainer="EventSoDBEntities1">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="EventSoDBModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventTypeCode" ColumnName="EventTypeCode" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="EventStatus" ColumnName="EventStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventTypes">
+      <EntityTypeMapping TypeName="EventSoDBModel.EventType">
+        <MappingFragment StoreEntitySet="EventType">
+          <ScalarProperty Name="EventTypeCode" ColumnName="EventTypeCode" />
+          <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professionals">
+      <EntityTypeMapping TypeName="EventSoDBModel.Professional">
+        <MappingFragment StoreEntitySet="Professional">
+          <ScalarProperty Name="ProfessionalCode" ColumnName="ProfessionalCode" />
+          <ScalarProperty Name="ProfessionalName" ColumnName="ProfessionalName" />
+          <ScalarProperty Name="ProfessionalTypeCode" ColumnName="ProfessionalTypeCode" />
+          <ScalarProperty Name="ProfessionalPhone" ColumnName="ProfessionalPhone" />
+          <ScalarProperty Name="SeveralTimesInvited" ColumnName="SeveralTimesInvited" />
+          <ScalarProperty Name="LivingArea" ColumnName="LivingArea" />
+          <ScalarProperty Name="TotalRatings" ColumnName="TotalRatings" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfessionalTypes">
+      <EntityTypeMapping TypeName="EventSoDBModel.ProfessionalType">
+        <MappingFragment StoreEntitySet="ProfessionalType">
+          <ScalarProperty Name="ProfessionalTypeCode" ColumnName="ProfessionalTypeCode" />
+          <ScalarProperty Name="ProfessionalTypeName" ColumnName="ProfessionalTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubTasks">
+      <EntityTypeMapping TypeName="EventSoDBModel.SubTask">
+        <MappingFragment StoreEntitySet="SubTask">
+          <ScalarProperty Name="SubTaskCode" ColumnName="SubTaskCode" />
+          <ScalarProperty Name="SubTaskName" ColumnName="SubTaskName" />
+          <ScalarProperty Name="TaskCode" ColumnName="TaskCode" />
+          <ScalarProperty Name="SubTaskDate" ColumnName="SubTaskDate" />
+          <ScalarProperty Name="BeginingTime" ColumnName="BeginingTime" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="details" ColumnName="details" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="EventSoDBModel.Task">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="TaskCode" ColumnName="TaskCode" />
+          <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+          <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+          <ScalarProperty Name="EventTypeCode" ColumnName="EventTypeCode" />
+          <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+          <ScalarProperty Name="ProfessionalCode" ColumnName="ProfessionalCode" />
+          <ScalarProperty Name="TaskStatus" ColumnName="TaskStatus" />
+          <ScalarProperty Name="BeginingTime" ColumnName="BeginingTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="EventSoDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Clue" ColumnName="Clue" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

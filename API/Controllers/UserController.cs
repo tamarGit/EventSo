@@ -14,9 +14,9 @@ namespace API.Controllers
         public BL.UserBL userBL = new BL.UserBL();
         [Route("api/User/Get")]
         [HttpGet]
-        public UserDTO Get(string userName, int code)
+        public IHttpActionResult Get(string userName, string code)
         {
-            return userBL.
+            return Ok(userBL.LogIn(userName, code));
         }
     }
 }
