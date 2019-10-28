@@ -9,6 +9,10 @@ namespace API.Controllers
 {
     public class EventController : ApiController
     {
+        [HttpGet]
+        public void get()
+        {
 
+        }
     }
 }
