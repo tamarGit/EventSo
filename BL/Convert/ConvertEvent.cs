@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 using DTO;
 
-namespace BL
+namespace BL.Convert
 {
    public class ConvertEvent
     {
@@ -18,9 +18,9 @@ namespace BL
                 EventDate = event1.EventDate,
                 EventName = event1.EventName,
                 EventStatus = event1.EventStatus,
-                //EventTypeCode=event1.EventTypeCode,
+                EventTypeCode=event1.EventTypeCode,
                 UserCode = event1.UserCode,
-                EventTypeCode = eventTypeBL.GetCodeByName(event1.EventTypeName)
+               
 
             };
         }
@@ -31,16 +31,17 @@ namespace BL
             {
                 EventCode = event1.EventCode,
                 UserCode = event1.UserCode,
-                EventTypeName = event1.EventTypeCode,
+                EventTypeName = event1.EventType.EventTypeName,
+                EventTypeCode=event1.EventTypeCode,
+                EventDate=event1.EventDate,
+                EventName=event1.EventName,
+                EventStatus=event1.EventStatus,
             };
         }
         public static List<EventDTO> ConvertEventListToDTO(List<Event> events)
         {
             return events.Select(e => ConvertEventToDTO(e)).ToList();
         }
-
-
-
 
     }
 }

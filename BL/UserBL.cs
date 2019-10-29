@@ -21,9 +21,21 @@ namespace BL
             }
             return 0;
         }
-        //public List<EventDTO> GetEvents(string mail, string password)
-        //{
-
-        //}
+        public int SignIn(UserDTO userDTO)
+        {
+            User user= BL.Convert.ConvertUser.convertUserToDAL(userDTO);
+            User checkUserExist=(DB.Users.FirstOrDefault(u => u.Mail == user.Mail));                       
+            int c=  DB.Users.Add(user).UserCode;
+            try
+            {
+                DB.SaveChanges();
+                
+                return c;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
     }
 }

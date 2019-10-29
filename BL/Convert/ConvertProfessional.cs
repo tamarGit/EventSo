@@ -35,7 +35,7 @@ namespace BL.Convert
                 SeveralTimesInvited = professional.SeveralTimesInvited,
                 TotalRatings = professional.TotalRatings,
                 ProfessionalTypeCode = professional.ProfessionalTypeCode,
-                ProfessionalTypeName = professionalTypeBL.GetNameByCode(professionalDTO1.ProfessionalTypeName)
+                ProfessionalTypeName = professional.ProfessionalType.ProfessionalTypeName,
             };
         }
     }
