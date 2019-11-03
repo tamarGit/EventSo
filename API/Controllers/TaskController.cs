@@ -12,11 +12,29 @@ namespace API.Controllers
     public class TaskController : ApiController
     {
         public BL.TaskBL taskBL = new BL.TaskBL();
-        [Route("api/Task/AddTask")]
+        [Route("api/Task/CreateTask")]
         [HttpGet]
-        public IHttpActionResult CreateEvent(TaskDTO taskDTO)
+        public IHttpActionResult CreateTask(TaskDTO taskDTO)
         {
-            return Ok(taskBL.CreateEvent(taskDTO));
+            return Ok(taskBL.CreateTask(taskDTO));
+        }
+        [Route("api/Task/GetTasks")]
+        [HttpGet]
+        public IHttpActionResult GetTasks(int eventCode)
+        {
+            return Ok(taskBL.GetTasks(eventCode));
+        }
+        [Route("api/Task/CreateSubTask")]
+        [HttpGet]
+        public IHttpActionResult CreateSubTask(SubTaskDTO subTaskDTO)
+        {
+            return Ok(taskBL.CreateSubTask(subTaskDTO));
+        }
+        [Route("api/Task/GetSubTasks")]
+        [HttpGet]
+        public IHttpActionResult GetSubTasks(int taskCode)
+        {
+            return Ok(taskBL.GetSubTasks(taskCode));
         }
     }
 }

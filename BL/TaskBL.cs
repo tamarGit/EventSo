@@ -13,9 +13,21 @@ namespace BL
     {
         public EventSoDBEntities1 DB = new EventSoDBEntities1();
 
-        public int AddTask(TaskDTO taskDTO)
+        public int CreateTask(TaskDTO taskDTO)
         {
-            Task taskDal=BL.Convert.
+            return  DB.Tasks.Add(BL.Convert.ConvertTask.ConvertTaskToDal(taskDTO)).TaskCode;
+        }
+        public List<TaskDTO> GetTasks(int eventCode)
+        {
+            return BL.Convert.ConvertTask.ConvertTaskListToDTO(DB.Tasks.Where(t => eventCode == t.EventCode).ToList());
+        }
+        public int CreateSubTask(SubTaskDTO subTaskDTO)
+        {
+            return DB.SubTasks.Add(BL.Convert.ConvertSubTask.ConvertSubTaskToDal(subTaskDTO)).SubTaskCode;
+        }
+        public List<SubTaskDTO> GetSubTasks(int taskCode)
+        {
+            return BL.Convert.ConvertSubTask.ConvertSubTaskListToDTO(DB.SubTasks.Where(st => st.TaskCode == taskCode).ToList());
         }
     }
 }

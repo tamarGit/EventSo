@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class SubTaskDTO
+    public class SubTaskDTO
     {
         public int SubTaskCode { get; set; }
         public string SubTaskName { get; set; }

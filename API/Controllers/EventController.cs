@@ -11,6 +11,7 @@ namespace API.Controllers
 {
     public class EventController : ApiController
     {
+<<<<<<< HEAD
         public BL.EventBl eventBl= new BL.EventBl();
         [Route("api/Event/GetEvents/{code}/{status}")]
         [HttpGet]
@@ -24,6 +25,12 @@ namespace API.Controllers
         {           
             return Ok(eventBl.CreateEvent(eventDTO));       
         }
+=======
+        [HttpGet]
+        public void get()
+        {
+>>>>>>> 7f4f067de578a7d56266091087d1b0305551e3cf
 
+        }
     }
 }
