@@ -8,7 +8,7 @@ using DAL;
 
 namespace BL.Convert
 {
-    class ConvertProfessional
+   public class ConvertProfessional
     {
         public static Professional ConvertProfessionalToDAL(ProfessionalDTO professionalDTO1)
         {
