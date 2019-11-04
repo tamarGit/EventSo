@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-     public class TaskDTO
+    public class TaskDTO
     {
         public int TaskCode { get; set; }
         public string TaskName { get; set; }
